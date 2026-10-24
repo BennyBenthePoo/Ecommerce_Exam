@@ -1,0 +1,473 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop All Products | ShopEase</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .shop-card {
+            border: none;
+            border-radius: 14px;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,.08);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .shop-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 22px rgba(0,0,0,.13);
+        }
+
+        .shop-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            background: #f1f1f1;
+        }
+
+        .shop-price {
+            color: #0d6efd;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .old-price {
+            color: #888;
+            text-decoration: line-through;
+            font-size: .9rem;
+        }
+
+        .filter-button {
+            border: 1px solid #0d6efd;
+            background: white;
+            color: #0d6efd;
+            border-radius: 25px;
+            padding: 8px 15px;
+            margin: 3px;
+        }
+
+        .filter-button.active,
+        .filter-button:hover {
+            background: #0d6efd;
+            color: white;
+        }
+
+        .shop-description {
+            min-height: 45px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">ShopEase.</a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="shop.html">Shop</a></li>
+                <li class="nav-item"><a class="nav-link" href="deals.html">Deals</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+
+                <li class="nav-item ms-lg-2">
+                    <a class="btn btn-primary" href="cart.html">
+                        🛒 Cart <span class="badge bg-light text-dark" id="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="py-5 bg-light">
+    <div class="container text-center">
+        <p class="text-primary fw-bold mb-2">EXPLORE OUR COLLECTION</p>
+        <h1 class="display-5 fw-bold">Shop All Products</h1>
+        <p class="text-secondary mx-auto" style="max-width:650px">
+            Discover fashionable clothing, useful electronics, and stylish
+            accessories at affordable prices.
+        </p>
+    </div>
+</header>
+
+<!-- PRODUCTS -->
+<main class="py-5">
+    <div class="container">
+
+        <!-- SEARCH -->
+        <div class="row g-3 mb-4">
+            <div class="col-lg-6">
+                <input type="search" id="product-search"
+                       class="form-control form-control-lg"
+                       placeholder="Search products by name or category...">
+            </div>
+
+            <div class="col-lg-6 text-lg-end">
+                <button class="filter-button active" data-category="All">All Products</button>
+                <button class="filter-button" data-category="Fashion">Fashion</button>
+                <button class="filter-button" data-category="Electronics">Electronics</button>
+                <button class="filter-button" data-category="Accessories">Accessories</button>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="h4 fw-bold mb-0">Our Products</h2>
+            <span class="text-secondary" id="product-count">12 products</span>
+        </div>
+
+        <!-- PRODUCTS ARE INSERTED HERE -->
+        <div class="row g-4" id="shop-products"></div>
+
+        <div id="no-products" class="text-center py-5 d-none">
+            <h4>No products found</h4>
+            <p class="text-secondary">Try another search or category.</p>
+            <button class="btn btn-primary" id="reset-filters">Show All Products</button>
+        </div>
+
+        <!-- PROMOTION -->
+        <div class="bg-primary text-white rounded-4 p-4 p-md-5 mt-5 text-center">
+            <h2 class="fw-bold">Found Something You Like?</h2>
+            <p>Review your selected items and continue shopping.</p>
+            <a href="cart.html" class="btn btn-warning btn-lg">View Shopping Cart</a>
+        </div>
+
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-dark text-white py-4">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <h5 class="fw-bold">ShopEase.</h5>
+                <p class="text-light">Everyday finds at prices worth exploring.</p>
+            </div>
+
+            <div class="col-6 col-md-4">
+                <h5>Explore</h5>
+                <a class="d-block text-white text-decoration-none mb-2" href="index.html">Home</a>
+                <a class="d-block text-white text-decoration-none mb-2" href="deals.html">Deals</a>
+                <a class="d-block text-white text-decoration-none mb-2" href="cart.html">Shopping Cart</a>
+            </div>
+
+            <div class="col-6 col-md-4">
+                <h5>Help</h5>
+                <a class="d-block text-white text-decoration-none mb-2" href="about.html">About Us</a>
+                <a class="d-block text-white text-decoration-none mb-2" href="about.html#contact">Contact</a>
+                <a class="d-block text-white text-decoration-none mb-2" href="about.html#faq">FAQs</a>
+            </div>
+        </div>
+
+        <div class="border-top border-secondary mt-4 pt-3 text-center text-secondary">
+            © 2026 ShopEase. Educational demo website.
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Product information
+    const shopItems = [
+        {
+            id: 1,
+            name: "Classic Cotton T-Shirt",
+            category: "Fashion",
+            price: 399,
+            oldPrice: 599,
+            rating: 4.7,
+            description: "A soft and comfortable everyday shirt.",
+            image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600"
+        },
+        {
+            id: 2,
+            name: "Running Sneakers",
+            category: "Fashion",
+            price: 1299,
+            oldPrice: 1599,
+            rating: 4.8,
+            description: "Comfortable sneakers for daily activities.",
+            image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"
+        },
+        {
+            id: 3,
+            name: "Wireless Headphones",
+            category: "Electronics",
+            price: 1899,
+            oldPrice: 2299,
+            rating: 4.9,
+            description: "Enjoy your favorite music wirelessly.",
+            image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+        },
+        {
+            id: 4,
+            name: "Smart Watch",
+            category: "Electronics",
+            price: 2499,
+            oldPrice: 2999,
+            rating: 4.8,
+            description: "A modern accessory for everyday activities.",
+            image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+        },
+        {
+            id: 5,
+            name: "Fashion Shoulder Bag",
+            category: "Accessories",
+            price: 899,
+            oldPrice: 1199,
+            rating: 4.7,
+            description: "A stylish bag for school and travel.",
+            image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600"
+        },
+        {
+            id: 6,
+            name: "Classic Sunglasses",
+            category: "Accessories",
+            price: 499,
+            oldPrice: 699,
+            rating: 4.6,
+            description: "Complete your look with fashionable sunglasses.",
+            image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600"
+        },
+        {
+            id: 7,
+            name: "Travel Backpack",
+            category: "Accessories",
+            price: 999,
+            oldPrice: 1299,
+            rating: 4.7,
+            description: "A spacious backpack for your daily essentials.",
+            image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600"
+        },
+        {
+            id: 8,
+            name: "Digital Camera",
+            category: "Electronics",
+            price: 5999,
+            oldPrice: 6999,
+            rating: 4.9,
+            description: "Capture your favorite moments and adventures.",
+            image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600"
+        },
+        {
+            id: 9,
+            name: "Casual Hoodie",
+            category: "Fashion",
+            price: 899,
+            oldPrice: 1199,
+            rating: 4.8,
+            description: "A cozy hoodie for cool days.",
+            image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600"
+        },
+        {
+            id: 10,
+            name: "Portable Speaker",
+            category: "Electronics",
+            price: 1199,
+            oldPrice: 1499,
+            rating: 4.6,
+            description: "Listen to music wherever you go.",
+            image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600"
+        },
+        {
+            id: 11,
+            name: "Classic Wristwatch",
+            category: "Accessories",
+            price: 799,
+            oldPrice: 999,
+            rating: 4.5,
+            description: "A timeless accessory for any occasion.",
+            image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=600"
+        },
+        {
+            id: 12,
+            name: "Casual Sneakers",
+            category: "Fashion",
+            price: 1499,
+            oldPrice: 1799,
+            rating: 4.8,
+            description: "Versatile footwear for everyday wear.",
+            image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600"
+        }
+    ];
+
+    let activeCategory = "All";
+
+    // Format prices in Philippine pesos
+    function peso(amount) {
+        return "₱" + amount.toLocaleString("en-PH", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    }
+
+    // Display product cards
+    function displayProducts() {
+        const container = document.getElementById("shop-products");
+        const search = document.getElementById("product-search").value.toLowerCase().trim();
+
+        const filtered = shopItems.filter(item => {
+            const matchesCategory =
+                activeCategory === "All" || item.category === activeCategory;
+
+            const matchesSearch =
+                item.name.toLowerCase().includes(search) ||
+                item.category.toLowerCase().includes(search) ||
+                item.description.toLowerCase().includes(search);
+
+            return matchesCategory && matchesSearch;
+        });
+
+        container.innerHTML = filtered.map(item => `
+            <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                <div class="card shop-card">
+                    <img
+                        src="${item.image}"
+                        alt="${item.name}"
+                        loading="lazy"
+                        onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=ShopEase+Product';"
+                    >
+
+                    <div class="card-body d-flex flex-column">
+                        <span class="badge text-bg-light align-self-start mb-2">
+                            ${item.category}
+                        </span>
+
+                        <h5 class="card-title">${item.name}</h5>
+
+                        <p class="text-warning mb-2">
+                            ★★★★★
+                            <span class="text-secondary small">${item.rating}/5</span>
+                        </p>
+
+                        <p class="text-secondary small shop-description">
+                            ${item.description}
+                        </p>
+
+                        <div class="mb-3">
+                            <span class="shop-price">${peso(item.price)}</span>
+                            <span class="old-price ms-2">${peso(item.oldPrice)}</span>
+                        </div>
+
+                        <button class="btn btn-primary mt-auto add-cart-button"
+                                data-id="${item.id}">
+                            🛒 Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `).join("");
+
+        document.getElementById("product-count").textContent =
+            `${filtered.length} product${filtered.length === 1 ? "" : "s"} found`;
+
+        document.getElementById("no-products").classList.toggle(
+            "d-none", filtered.length !== 0
+        );
+    }
+
+    // Read cart shared by the other ShopEase pages
+    function readCart() {
+        try {
+            const saved = JSON.parse(localStorage.getItem("shopease-cart")) || [];
+            return Array.isArray(saved) ? saved : [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function updateCartBadge() {
+        const cart = readCart();
+        const count = cart.reduce(
+            (sum, item) => sum + Number(item.quantity || 0), 0
+        );
+
+        document.getElementById("cart-count").textContent = count;
+    }
+
+    // Add a product to the shared browser cart
+    function addShopItem(id) {
+        const product = shopItems.find(item => item.id === id);
+        if (!product) return;
+
+        const cart = readCart();
+        const existing = cart.find(item => Number(item.id) === id);
+
+        if (existing) {
+            existing.quantity = Number(existing.quantity || 0) + 1;
+        } else {
+            cart.push({
+                ...product,
+                quantity: 1
+            });
+        }
+
+        localStorage.setItem("shopease-cart", JSON.stringify(cart));
+        updateCartBadge();
+
+        alert(product.name + " was added to your cart!");
+    }
+
+    // Search while typing
+    document.getElementById("product-search").addEventListener(
+        "input", displayProducts
+    );
+
+    // Category buttons
+    document.querySelectorAll(".filter-button").forEach(button => {
+        button.addEventListener("click", function () {
+            activeCategory = this.dataset.category;
+
+            document.querySelectorAll(".filter-button").forEach(btn => {
+                btn.classList.toggle("active", btn === this);
+            });
+
+            displayProducts();
+        });
+    });
+
+    // Add to cart using event delegation
+    document.getElementById("shop-products").addEventListener("click", function (event) {
+        const button = event.target.closest(".add-cart-button");
+
+        if (button) {
+            addShopItem(Number(button.dataset.id));
+        }
+    });
+
+    // Reset filters
+    document.getElementById("reset-filters").addEventListener("click", function () {
+        activeCategory = "All";
+        document.getElementById("product-search").value = "";
+
+        document.querySelectorAll(".filter-button").forEach(button => {
+            button.classList.toggle("active", button.dataset.category === "All");
+        });
+
+        displayProducts();
+    });
+
+    // Initial display
+    displayProducts();
+    updateCartBadge();
+</script>
+
+</body>
+</html>
+```
